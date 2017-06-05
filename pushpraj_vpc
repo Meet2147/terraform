@@ -1,0 +1,35 @@
+provider "aws" {
+   access_key = "AKIAIU762IRMZ5UABUVQ"
+   secret_key = "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"
+   region = "us-east-1"
+}
+
+#resource "aws_instance" "testbox" {
+#   ami = "ami-e13739f6"
+#   instance_type = "t2.micro"
+#   key_name = "ssh-east"
+#}
+
+resource "aws_vpc" "pushpraj" {
+    cidr_block = "10.0.0.0/16"
+    enable_dns_support = true
+    enable_dns_hostnames = true
+
+    tags {
+        Name = "Test VPC"
+    }
+}
+
+resource "aws_internet_gateway" "main" {
+    vpc_id = "${aws_vpc.pushpraj.id}"
+
+    tags {
+        Name = "igw-testvpc"
+    }
+}
+
+resource "aws_eip" "nat_gateway" {
+    count = "${length(split(",", var.zones))}"
+    vpc = true
+}
+
