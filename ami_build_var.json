@@ -1,0 +1,12 @@
+{
+	"source_ami": "ami-0b33d91d",
+        "ami_name": "XPX-Amazon-AMI",
+        "ami_description": "AMI built for POC",
+        "instance_type": "t2.micro",
+        "aws_region": "us-east-1",
+        "ami_regions": "us-east-1",
+        "security_group_id": "sg-c9460fb2",
+        "subnet_id": "subnet-c0b032ea",
+        "vpc_id": "vpc-2acadb4e",
+	"ssh_username": "ec2-user"
+}

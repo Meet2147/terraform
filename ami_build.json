@@ -1,0 +1,46 @@
+{
+	"variables": {
+	  "access_key": "",
+	  "secret_key": "",
+	  "source_ami": "",
+	  "ami_name": "",
+	  "ami_description": "",
+	  "instance_type": "",
+	  "aws_region": "",
+	  "ami_regions": "",
+	  "security_group_id": "",
+	  "subnet_id": "",
+	  "vpc_id": ""
+	  	
+	},
+
+	"builders" : [
+	  {
+	  "type": "amazon-ebs",
+	  "communicator": "ssh",
+	  "access_key": "{{user `access_key`}}",
+	  "secret_key": "{{user `secret_key`}}",
+	  "source_ami": "{{user `source_ami`}}",
+	  "ami_name": "{{user `ami_name`}}",
+	  "ami_description": "{{user `ami_description`}}",
+	  "instance_type": "{{user `instance_type`}}",
+	  "region": "{{user `aws_region`}}",
+	  "ami_regions": "{{user `ami_regions`}}",
+	  "associate_public_ip_address": true,
+	  "security_group_ids": ["{{user `security_group_id`}}"],
+	  "ssh_private_ip": false,
+	  "subnet_id": "{{user `subnet_id`}}",
+	  "vpc_id": "{{user `vpc_id`}}",
+	  "ssh_username": "{{user `ssh_username`}}"
+	  }
+	],
+
+	"provisioners": [
+	  {
+	  "type": "shell",
+	  "inline": [
+		"sudo yum -y install nginx"
+		]
+	  }
+	]
+}
